@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <style>
+        path { stroke: black; stroke-width: 3; fill: steelblue;}
+    </style>
+</head>
+<body>
+<script>
+
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    var symbolTypes = d3.svg.symbolTypes;
+    console.log(symbolTypes);
+
+    var svg = d3.select('body').append('svg').attr({'height': height, 'width': width});
+
+    symbolTypes.forEach(function(s, i){
+        var symbol = d3.svg.symbol().type(s).size(100);
+        d3.select('svg').append('path').attr({d: symbol}).attr('transform', 'translate('+(i*100+50)+',50)');
+    });
+
+
+
+</script>
+</body>
+</html>

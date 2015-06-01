@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <style>
+        .x.axis path, .x.axis line {fill: none; stroke: black;}
+    </style>
+</head>
+<body>
+<script>
+
+    var width = 800;
+    var height = 100;
+    // the heights of the worlds latest buildings, in ft.
+    var data = [2717, 2073, 1971,
+        1776, 1670];
+    // create our svg and add it
+    // to the `<body>`
+    var svg = d3.select('body')
+            .append('svg').attr({'width': width});
+    // create a scale that goes from
+    // [0, max(data)] -> [10, width]
+    var scale = d3.scale.linear()
+            .domain([0, d3.max(data)])
+            .range([10, width]);
+    // create a new axis that
+    // uses this new scale
+    var axis = d3.svg.axis()
+            .scale(scale);
+    // add the new axis to the svg.
+    // same as `axis(svg);` except
+    // that it returns `svg`
+    //svg.call(axis);
+
+    svg.append('g').call(axis).attr('class', 'x axis')
+            .attr('transform', 'translate(0, '+height+')');
+
+    // add some circles along the axis that represent the building heights.
+    svg.selectAll('circle').data(data)
+            .enter().append('circle')
+            .attr('r', 4)
+            .attr('transform', function(d) {
+                return 'translate('+scale(d)+', ' + (height)  + ')'
+            });
+
+</script>
+</body>
+</html>

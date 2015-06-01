@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <style>
+        path { stroke: black; stroke-width: 3; fill: steelblue;}
+    </style>
+</head>
+<body>
+<script>
+
+    // nothing gets rendered, just log
+
+    var values = d3.range(100).map(function(i) { return Math.random()* 10000});
+    console.log('Unscaled values: %s', values);
+
+    var scale = d3.scale.linear().domain([d3.min(values), d3.max(values)]);
+    var scaledValues = values.map(function(d){return scale(d)});
+    console.log('Scaled values: %s', scaledValues);
+
+    var range = scale.range(["red", "blue"]);
+    var rangedValues = values.map(function(d){return scale(d)});
+    console.log('Ranged values: %s', rangedValues);
+
+
+    var color = d3.scale.linear()
+            .domain([0, 20, 40])
+            .range(['red', 'white', 'black']);
+    console.log('color(0): %s', color(0));
+    console.log('color(20): %s', color(20));
+    console.log('color(40): %s', color(40));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <style>
+        circle { fill: orange; stroke: #333; }
+        path { fill: none; stroke: #ccc; }
+    </style>
+</head>
+<body>
+<script>
+
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+
+    var svg = d3.select('body').append('svg').attr({'height': height, 'width': width});
+    var diagonal = d3.svg.diagonal();
+    var source = { x: 500, y: 50 };
+    var targets = [
+        { x: 100, y: 150 },
+        { x: 300, y: 150 },
+        { x: 500, y: 150 },
+        { x: 700, y: 150 },
+        { x: 900, y: 150 }
+    ];
+    // create the link pairs
+    var links = targets.map(function(target){
+        return { source: source, target: target };
+    });
+
+
+    // use the diagonal generator to take our links and create the the curved paths
+    // to connect our nodes
+    var link = svg.selectAll('path').data(links).enter().append('path')
+            .attr('d', diagonal);
+
+    // add all the nodes!
+    var nodes = targets.concat(source)
+    svg.selectAll('circle').data(nodes).enter().append('circle')
+            .attr({
+                r: 20,
+                cx: function(d){ return d.x; },
+                cy: function(d){ return d.y; }
+            });
+
+
+</script>
+</body>
+</html>

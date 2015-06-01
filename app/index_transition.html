@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <style>
+        .x.axis path, .x.axis line {fill: none; stroke: black;}
+    </style>
+</head>
+<body>
+<script>
+
+    var width = window.innerWidth;
+    var height = 30;
+
+    var easeTypes = ['linear', 'poly', 'quad', 'cubic', 'sin', 'exp', 'circle', 'elastic', 'bounce', 'cubic-in-out'];
+
+    easeTypes.forEach(function(t) {
+        d3.select('body').append('svg').attr({'height': height, 'width': width})
+                .append('circle').attr({r: 10, cx: 100, cy: 10})
+                .transition()
+                .duration(4000)
+                .ease(t)
+                .attr('cx', 800);
+    });
+
+
+
+</script>
+</body>
+</html>

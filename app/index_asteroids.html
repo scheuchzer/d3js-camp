@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+<script>
+    var level = 0, width = window.innerWidth, height = window.innerHeight;
+    var svg = d3.select('body').append('svg').attr({'height': height, 'width': width});
+    var circles = svg.selectAll('circle').data(d3.range(20)).enter()
+            .append('circle').attr('r', 50)
+            .on('mouseover', function(){
+                alert('Nice! You made it to level ' + level);
+                level = 0;
+            });
+    function update(){
+        circles.transition().duration(2000).attr({
+            cx: function(){ return Math.random() * width },
+            cy: function(){ return Math.random() * height } });
+        level++;
+    }
+    update();
+    setInterval(update, 2000);
+</script>
+</body>
+</html>

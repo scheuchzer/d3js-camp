@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <style>
+        .x.axis path, .x.axis line {fill: none; stroke: black;}
+    </style>
+</head>
+<body>
+<script>
+
+    d3.csv('episodes.csv', function(err, data){
+        if(err) throw err;
+        console.log(data[0].Title); // => "Winter is Coming"
+        console.log(data[1].Title); // -> "The kingsroad"
+    // etc...
+    });
+
+
+    d3.json('episodes.json', function(err, data){
+        if(err) throw err;
+        console.log(data[0].Title); // => "Winter is Coming"
+        console.log(data[1].Title); // -> "The kingsroad"
+    // etc...
+    });
+
+</script>
+</body>
+</html>
