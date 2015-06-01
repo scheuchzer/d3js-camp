@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <style>
+        path { stroke: white; stroke-width: 2; fill: steelblue;}
+        .plot{ fill: none; stroke: #aec7e8; stroke-width: 2;}
+        circle{ fill: steelblue; stroke: white;}
+    </style>
+</head>
+<body>
+<script>
+
+    var svg = d3.select('body').append('svg').attr({'height': '1000', 'width': '500'})
+    // construct and configure the are generator
+    var area = d3.svg.area()
+            .y0(100) // set the lower y bound of the area shape
+            .y1(function(d){ return d.y })
+            .x(function(d, i){ return d.x })
+
+    // generator some random data
+    var data = d3.range(100).map(function(){ return Math.random() * 30 + 0 })
+    .map(function(d, i){  var loc= { x: i * 10, y: d }; console.log('%s', JSON.stringify(loc)); return loc;})
+
+    // draw the area shape under the line of the plot
+    svg.append('path').datum(data).attr('d', area)
+
+    // give the area shape a border along its top edge
+    var line = d3.svg.line()
+    .x(function(d){ return d.x})
+    .y(function(d){ return d.y })
+    svg.append('path').datum(data).attr('d', line).attr('class', 'plot')
+
+    // the circles at all the points
+    svg.selectAll('circle').data(data).enter().append('circle')
+    .attr('cx', function(d){ return d.x })
+    .attr('cy', function(d){ return d.y })
+    .attr('r', 3)
+
+
+</script>
+</body>
+</html>
