@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+    <style>
+        li { list-style: none}
+        body{ margin: 0; }
+        path { stroke: white; stroke-width: 1px;}
+        path:hover {
+            stroke: yellow;
+            stroke-width: 3px;
+        }
+        .donutChart {
+            float: left;
+        }
+    </style>
+</head>
+<body ng-app='myApp'>
+    <p>
+        <hello-world></hello-world>
+        <myTest></myTest>
+    </p>
+
+    <h3>Data from controller d3 style</h3>
+
+    <div  ng-controller="MainController">
+        <donut-chart3 data="data"></donut-chart3>
+    </div>
+    <div  ng-controller="MainController">
+        <donut-chart3 data="data"></donut-chart3>
+    </div>
+
+
+<script>
+
+
+</script>
+</body>
+</html>
