@@ -1,0 +1,8 @@
+<div class="donutChart">
+    <ul>
+        <li ng-repeat="slice in data track by $index">
+            <input type="range" ng-model="slice.value" />
+        </li>
+    </ul>
+    <button ng-click="data.push({value: 50})">add slice</button><button ng-click="data.pop()">remove slice</button>
+</div>

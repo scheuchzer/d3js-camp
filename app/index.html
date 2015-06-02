@@ -1,34 +1,54 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
+    <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
     <style>
+        li { list-style: none}
         body{ margin: 0; }
-        path { stroke: white; stroke-width: 2px;}
+        path { stroke: black; stroke-width: 1px;}
+        path:hover {
+            stroke: yellow;
+            stroke-width: 3px;
+        }
+        .donutChart {
+            float: left;
+        }
     </style>
 </head>
-<body>
+<body ng-app='myApp' ng-init="charts=[[{value:20}, {value:2},{value:4}], [{value:3}, {value:6}, {value:9}], [{value:1},{value:1},{value:1}]]">
+    <p>
+        <hello-world></hello-world>
+        <myTest></myTest>
+    </p>
+
+    <!--
+    <h3>Data in Tag</h3>
+    <p>
+        <donut-chart data="[8, 3, 7]"></donut-chart>
+        <donut-chart data="[2, 5, 9]"></donut-chart>
+        <donut-chart data="[6, 2, 3]"></donut-chart>
+    </p>
+    -->
+
+    <h3>Data in variable</h3>
+
+    <p>
+        <donut-chart data="charts[0]"></donut-chart>
+        <donut-chart data="charts[1]"></donut-chart>
+    </p>
+    <!--<p>
+        <input type="range" ng-model="charts[$index][0]" ng-repeat="chart in charts"/><br/>
+        <input type="range" ng-model="charts[$index][1]" ng-repeat="chart in charts"/><br/>
+        <input type="range" ng-model="charts[$index][2]" ng-repeat="chart in charts"/><br/>
+    </p>
+    <p>
+        <button ng-click="charts[0].push(50)">add slice</button><button ng-click="charts[0].pop(50)">remove slice</button>
+    </p>-->
+
 <script>
 
-    // the arc generator
-    var arc = d3.svg.arc()
-            .innerRadius(100)
-            .outerRadius(150);
-
-    var data = [21, 32, 35, 64, 83];
-
-    var color = d3.scale.category10();
-
-    var pie = d3.layout.pie();
-    var arcData = pie(data);
-
-    d3.select('body').append('svg').attr({'height': '500', 'width': '500'})
-            .append('g').attr('transform', 'translate(200, 175)')
-            .selectAll('path').data(arcData).enter()
-            .append('path').attr('d', arc).style('fill', function(d, i){
-                console.log(i);
-                return color(i);
-            });
 
 </script>
 </body>
